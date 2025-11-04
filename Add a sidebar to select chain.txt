@@ -1,0 +1,15 @@
+# Detect available chains from the raw PDB text
+def list_chains(pdb_text: str):
+    chains = []
+    seen = set()
+    for ln in pdb_text.splitlines():
+        if ln.startswith(("ATOM", "HETATM")):
+            ch = ln[21].strip() or "A"
+            if ch not in seen:
+                seen.add(ch); chains.append(ch)
+    return chains
+
+chains_available = list_chains(pdb_text)
+st.sidebar.caption("Chains detected: " + (", ".join(chains_available) or "None"))
+chain_choice = st.sidebar.multiselect("Show chains", chains_available, default=chains_available)
+first_model_only = st.sidebar.toggle("Use first MODEL only (NMR/ensembles)", value=True)

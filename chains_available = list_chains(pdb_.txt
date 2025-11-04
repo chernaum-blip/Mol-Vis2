@@ -1,0 +1,7 @@
+chains_available = list_chains(pdb_text)
+st.sidebar.caption("Chains detected: " + (", ".join(chains_available) or "None"))
+chain_choice = st.sidebar.multiselect("Show chains", chains_available, default=chains_available)
+first_model_only = st.sidebar.toggle("Use first MODEL only (NMR/ensembles)", value=True)
+
+# Build filtered text for both rendering and analysis
+pdb_text_view = filter_pdb(pdb_text, keep_chains=chain_choice, first_model_only=first_model_only)
