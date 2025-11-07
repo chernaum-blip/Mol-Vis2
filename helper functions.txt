@@ -1,0 +1,3 @@
+def distance(a, b):
+    v = a.get_vector() - b.get_vector()
+    return float((v * v) ** 0.5)
