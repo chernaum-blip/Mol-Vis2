@@ -8,10 +8,11 @@ import pandas as pd
 
 # Optional speedup (falls back gracefully if missing)
 try:
-from scipy.spatial import cKDTree as KDTree # type: ignore
-HAVE_KDTREE = True
+    from scipy.spatial import cKDTree as KDTree  # type: ignore
+    HAVE_KDTREE = True
 except Exception:
-HAVE_KDTREE = False
+    HAVE_KDTREE = False
+
 
 # Biopython
 from Bio.PDB import PDBParser
@@ -237,5 +238,6 @@ st.markdown("""---
 • Adjust the hydrogen-bond cutoff to explore more/less interactions. 
 • Use *Use tube fallback* if cartoons don’t render on your device.
 """)
+
 
 
